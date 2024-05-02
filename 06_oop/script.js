@@ -10,13 +10,20 @@ ctx.strokeStyle = 'magenta';
 
 
 class Line{
-    constructor() {
-        this.startX = Math.random()*canvas.width; // random value between 0 and canvas width.
-        this.startY = Math.random()*canvas.height; // random value between 0 and canvas height.
-        this.endX = Math.random()*canvas.width; // random value between 0 and canvas width.
-        this.endY = Math.random()*canvas.height; // random value between 0 and canvas height.
+    constructor(canvas) {
+        this.canvas = canvas
+        this.startX = Math.random()*this.canvas.width; // random value between 0 and canvas width.
+        this.startY = Math.random()*this.canvas.height; // random value between 0 and canvas height.
+        this.endX = Math.random()*this.canvas.width; // random value between 0 and canvas width.
+        this.endY = Math.random()*this.canvas.height; // random value between 0 and canvas height.
     }
-    draw_line() {
-        
+    draw_line(context) {
+        context.beginPath();
+        context.moveTo(this.startX, this.startY);
+        context.lineTo(this.endX, this.endY);
+        context.stroke();
     }
 }
+
+const line1 = new Line(canvas);
+line1.draw_line(ctx);
